@@ -23,7 +23,7 @@ public class ApiCallHistoryInterceptor implements AsyncHandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
-        ContentCachingRequestWrapper req=null;
+//        ContentCachingRequestWrapper req=null;
 
 //            req = new ContentCachingRequestWrapper(request);
 //            byte[] requestBody = req.getContentAsByteArray();
@@ -74,9 +74,12 @@ public class ApiCallHistoryInterceptor implements AsyncHandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-
-//       response.getOutputStream().println();
-
+//        ContentCachingRequestWrapper requestWrapper = new ContentCachingRequestWrapper(request);
+//
+//        byte[] requestBody = requestWrapper.getContentAsByteArray();
+//        if (requestBody.length > 0) {
+//            System.out.println(("Request body: {}"+ new String(requestBody, requestWrapper.getCharacterEncoding())));
+//        }
 
     }
 

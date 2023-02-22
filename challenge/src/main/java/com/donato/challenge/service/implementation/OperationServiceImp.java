@@ -17,11 +17,11 @@ public class OperationServiceImp implements OperationService {
 
 
     @Override
-    public double sumar(double x, double y) {
-        double suma= x+y;
-        double resultado=0;
+    public double add(double x, double y) {
+        double sum= x+y;
+        double result=0;
         try {
-           resultado=suma * externalService.getPorcentual();
+           result=sum * externalService.getPorcentual();
         }catch (Exception e){
             ApiCallRequestHistory op=  apiCallRequestHistoryService.findFirstByOrderByTimestampDesc();
            //return op!=null?op.getRequestBody(). ;
@@ -32,7 +32,7 @@ public class OperationServiceImp implements OperationService {
 
         //Si falla se debe devolver el último valor retornado. En caso que no haya valor
         // retorna un error la API
-        //persistirHistorial(new CalculoRequest(x, y, resultado));
+        //persistirHistorial(new CalculoRequest(x, y, result));
         return  0;
     }
 

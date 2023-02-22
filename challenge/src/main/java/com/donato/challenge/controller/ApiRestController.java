@@ -17,7 +17,7 @@ public class ApiRestController {
 //
     @PostMapping
     public ResponseEntity<Double> sumar(@RequestBody OperationRequest request) {
-        double resultado = operationService.sumar(request.getX(), request.getY());
+        double resultado = operationService.add(request.getX(), request.getY());
         return new ResponseEntity<>(resultado, HttpStatus.OK);
     }
 
@@ -27,7 +27,7 @@ public class ApiRestController {
 //    }
     @GetMapping()
     public ResponseEntity<Respuesta> sum() {
-        Respuesta res=new Respuesta(operationService.sumar(3, 4));
+        Respuesta res=new Respuesta(operationService.add(3, 4));
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
