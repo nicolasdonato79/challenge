@@ -1,23 +1,16 @@
 package com.donato.challenge.interceptor;
 
-import com.donato.challenge.entities.ApiCallRequestHistory;
-import com.donato.challenge.repository.ApiCallRequestHistoryRepository;
-import com.donato.challenge.wrapper.CachedBodyHttpServletRequest;
-import jakarta.servlet.ServletOutputStream;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
+import java.io.IOException;
+
 import org.springframework.stereotype.Component;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.servlet.AsyncHandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.ContentCachingRequestWrapper;
-import org.springframework.web.util.ContentCachingResponseWrapper;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.util.Date;
-import java.util.stream.Collectors;
+import com.donato.challenge.repository.ApiCallRequestHistoryRepository;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Component
 public class ApiCallHistoryInterceptor implements AsyncHandlerInterceptor {
@@ -30,14 +23,14 @@ public class ApiCallHistoryInterceptor implements AsyncHandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
-//        ContentCachingRequestWrapper req=null;
-//        if(request.getContentLength() > 0){
+        ContentCachingRequestWrapper req=null;
+
 //            req = new ContentCachingRequestWrapper(request);
 //            byte[] requestBody = req.getContentAsByteArray();
 //            if(requestBody.length==0){
 //                System.out.println("no tiene nada");
 //            }
-//        }
+
 
 
 
