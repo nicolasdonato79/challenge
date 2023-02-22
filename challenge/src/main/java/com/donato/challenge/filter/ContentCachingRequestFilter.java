@@ -30,9 +30,10 @@ public class ContentCachingRequestFilter extends OncePerRequestFilter {
             System.out.println(("Request body: {}" + new String(requestBody, requestWrapper.getCharacterEncoding())));
         }
         byte[] responseBody = responseWrapper.getContentAsByteArray();
-        if (requestBody.length > 0) {
+        if (responseBody.length > 0) {
             System.out.println(("Response body: {}" + new String(responseBody, responseWrapper.getCharacterEncoding())));
 
         }
+
     }
 }

@@ -33,7 +33,7 @@ public class OperationServiceImp implements OperationService {
         //Si falla se debe devolver el último valor retornado. En caso que no haya valor
         // retorna un error la API
         //persistirHistorial(new CalculoRequest(x, y, result));
-        return  0;
+        return  result;
     }
 
 

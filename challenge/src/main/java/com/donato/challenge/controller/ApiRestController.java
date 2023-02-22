@@ -16,9 +16,9 @@ public class ApiRestController {
     private OperationService operationService;
 //
     @PostMapping
-    public ResponseEntity<Double> sumar(@RequestBody OperationRequest request) {
-        double resultado = operationService.add(request.getX(), request.getY());
-        return new ResponseEntity<>(resultado, HttpStatus.OK);
+    public ResponseEntity<Respuesta> add(@RequestBody OperationRequest request) {
+//        double result = operationService.add(request.getX(), request.getY());
+        return new ResponseEntity<>(new Respuesta(operationService.add(request.getX(), request.getY())), HttpStatus.OK);
     }
 
 //    @PostMapping()
