@@ -10,18 +10,18 @@ import org.springframework.stereotype.Service;
 public class OperationServiceImp implements OperationService {
 
     @Autowired
-    private ExternalService externalService;
+    private ExternalServiceImp externalServiceImp;
 
     @Autowired
     private ApiCallRequestHistoryService apiCallRequestHistoryService;
 
 
     @Override
-    public double add(double x, double y) {
-        double sum= x+y;
+    public double add(Double x, Double y) {
+
         double result=0;
         try {
-           result=sum * externalService.getPorcentual();
+           result=externalServiceImp.getPorcentual(x, y);
         }catch (Exception e){
             ApiCallRequestHistory op=  apiCallRequestHistoryService.findFirstByOrderByTimestampDesc();
            //return op!=null?op.getRequestBody(). ;

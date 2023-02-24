@@ -25,10 +25,10 @@ public class ApiRestController {
 //    public ResponseEntity<Respuesta> sum(@RequestParam double x, @RequestParam double y) {
 //        return new ResponseEntity<Respuesta>(new Respuesta(operationService.sumar(x, y)), HttpStatus.OK);
 //    }
-    @GetMapping()
-    public ResponseEntity<Respuesta> sum() {
-        Respuesta res=new Respuesta(operationService.add(3, 4));
-        return new ResponseEntity<>(res, HttpStatus.OK);
-    }
+//    @GetMapping()
+//    public ResponseEntity<Respuesta> sum() {
+//        Respuesta res=new Respuesta(operationService.add(3, 4));
+//        return new ResponseEntity<>(res, HttpStatus.OK);
+//    }
 
 }
