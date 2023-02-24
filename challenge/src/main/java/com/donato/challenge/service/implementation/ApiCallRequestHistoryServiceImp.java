@@ -24,13 +24,9 @@ public class ApiCallRequestHistoryServiceImp implements ApiCallRequestHistorySer
        return apiCallRequestHistoryRepository.findFirstByOrderByTimestampDesc();
     }
 
-    @Override
-    public ApiCallRequestHistory save(ApiCallRequestHistory apiCallRequestHistory) {
-        return    apiCallRequestHistoryRepository.save(apiCallRequestHistory);
-    }
 
     @Async
-    void persistirHistorial(ApiCallRequestHistory calculo){
-        apiCallRequestHistoryRepository.save(calculo);
+    public ApiCallRequestHistory saveCall(ApiCallRequestHistory call){
+        return apiCallRequestHistoryRepository.save(call);
     }
 }

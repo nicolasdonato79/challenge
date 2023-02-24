@@ -10,6 +10,8 @@ public interface ApiCallRequestHistoryService {
 
     public ApiCallRequestHistory findFirstByOrderByTimestampDesc();
 
-    public ApiCallRequestHistory save(ApiCallRequestHistory apiCallRequestHistory);
+    public ApiCallRequestHistory saveCall(ApiCallRequestHistory apiCallRequestHistory);
+
+
 
 }

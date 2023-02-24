@@ -1,8 +1,11 @@
 package com.donato.challenge.service.implementation;
 
 import com.donato.challenge.entities.ApiCallRequestHistory;
+import com.donato.challenge.entities.Respuesta;
 import com.donato.challenge.service.interfaces.ApiCallRequestHistoryService;
 import com.donato.challenge.service.interfaces.OperationService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,16 +20,16 @@ public class OperationServiceImp implements OperationService {
 
 
     @Override
-    public double add(Double x, Double y) {
+    public double add(Double x, Double y) throws JsonProcessingException {
 
         double result=0;
         try {
            result=externalServiceImp.getPorcentual(x, y);
         }catch (Exception e){
             ApiCallRequestHistory op=  apiCallRequestHistoryService.findFirstByOrderByTimestampDesc();
-           //return op!=null?op.getRequestBody(). ;
-
-        }finally {
+            ObjectMapper mapper= new ObjectMapper();
+            Respuesta respuesta=mapper.readValue(op.getResponseBody(), Respuesta.class);
+            return respuesta.getRespuesta();
 
         }
 
