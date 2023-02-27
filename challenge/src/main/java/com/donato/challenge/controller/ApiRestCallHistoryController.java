@@ -1,24 +1,64 @@
 package com.donato.challenge.controller;
 
+import com.donato.challenge.entities.ApiCallRequestHistory;
+import com.donato.challenge.entities.OperationRequest;
+import com.donato.challenge.service.interfaces.ApiCallRequestHistoryService;
+import com.donato.challenge.service.interfaces.OperationService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @RestController
 @RequestMapping("/api-rest-call-history")
 public class ApiRestCallHistoryController {
 
-    @GetMapping
-    public ResponseEntity<Double> getHistorial() {
-        // TODO: Falta implementar
+    @Autowired
+    ApiCallRequestHistoryService apiCallRequestHistoryService;
 
-        double resultado=0.0;
-        return new ResponseEntity<>(resultado, HttpStatus.OK);
+
+    @GetMapping
+    public List<ApiCallRequestHistory> getAll() {
+        return apiCallRequestHistoryService.getAll();
+    }
+    @GetMapping("/paginated")
+    public List<ApiCallRequestHistory> getPaginated() {
+        return apiCallRequestHistoryService.getAll();
     }
 
+    @PostMapping(value = "/buscar")
+    public String buscar(@RequestParam("code") String code, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
+                         @RequestParam("sortField") String sortField, @RequestParam("sortDir") String sortDir) {
 
 
+        int currentPage = page.orElse(1);
+        int pageSize = size.orElse(10);
+        // Items fin
+
+        Page<ApiCallRequestHistory> pagina = null;
+
+        pagina = buscarPagina(code, currentPage, pageSize, sortField, sortDir);
+
+        int totalPages = pagina.getTotalPages();
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
+
+        }
+
+        return null;
+    }
+
+    private Page<ApiCallRequestHistory> buscarPagina(String code, int pageNo, int pageSize, String sortField, String sortDir) {
+
+
+        return apiCallRequestHistoryService.search(code ,pageNo, pageSize, sortField, sortDir);
+    }
 }

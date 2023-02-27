@@ -1,6 +1,7 @@
 package com.donato.challenge.service.interfaces;
 
 import com.donato.challenge.entities.ApiCallRequestHistory;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -12,6 +13,6 @@ public interface ApiCallRequestHistoryService {
 
     public ApiCallRequestHistory saveCall(ApiCallRequestHistory apiCallRequestHistory);
 
-
-
+    public Page<ApiCallRequestHistory> search(String code, int pageNo, int pageSize,
+                                              String sortField, String sortDirection);
 }

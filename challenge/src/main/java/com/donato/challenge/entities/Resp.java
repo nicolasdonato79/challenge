@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Respuesta {
-    Double respuesta;
+public class Resp {
+    Double resp;
 }

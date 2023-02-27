@@ -1,7 +1,7 @@
 package com.donato.challenge.controller;
 
 import com.donato.challenge.entities.OperationRequest;
-import com.donato.challenge.entities.Respuesta;
+import com.donato.challenge.entities.Resp;
 import com.donato.challenge.exception.ServerExternalException;
 import com.donato.challenge.service.interfaces.OperationService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -22,9 +22,9 @@ public class ApiRestController {
 //    429 si se pasa de intentos dentro del plazo dado
     @PostMapping
     @ExceptionHandler({ServerExternalException.class, JsonProcessingException.class})
-    public ResponseEntity<Respuesta> add(@RequestBody OperationRequest request) throws JsonProcessingException {
+    public ResponseEntity<Resp> add(@RequestBody OperationRequest request) throws JsonProcessingException {
 
-        return new ResponseEntity<>(new Respuesta(operationService.add(request.getX(), request.getY())), HttpStatus.OK);
+        return new ResponseEntity<>(new Resp(operationService.add(request.getX(), request.getY())), HttpStatus.OK);
 
     }
 

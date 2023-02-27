@@ -53,7 +53,12 @@ public class ContentCachingRequestFilter extends OncePerRequestFilter {
             String endpoint = requestWrapper.getRequestURI();
             Date timestamp = new Date();
 
-            ApiCallRequestHistory apiCallHistory = new ApiCallRequestHistory(method, endpoint, new String(requestBody, requestWrapper.getCharacterEncoding()), new String(responseBody, responseWrapper.getCharacterEncoding()), timestamp);
+            String request=new String(requestBody, requestWrapper.getCharacterEncoding());
+            request=request.length()>255?request.substring(0,254):request;
+            String response=new String(responseBody, responseWrapper.getCharacterEncoding()).substring(0,254);
+            response=response.length()>255?response.substring(0,254):response;
+
+            ApiCallRequestHistory apiCallHistory = new ApiCallRequestHistory(method, endpoint, request, response , timestamp);
 
             apiCallRequestHistoryService.saveCall(apiCallHistory);
 

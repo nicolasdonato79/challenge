@@ -1,7 +1,7 @@
 package com.donato.challenge.service.implementation;
 
 import com.donato.challenge.entities.ApiCallRequestHistory;
-import com.donato.challenge.entities.Respuesta;
+import com.donato.challenge.entities.Resp;
 import com.donato.challenge.exception.ServerExternalException;
 import com.donato.challenge.service.interfaces.ApiCallRequestHistoryService;
 import com.donato.challenge.service.interfaces.OperationService;
@@ -30,8 +30,8 @@ public class OperationServiceImp implements OperationService {
             ApiCallRequestHistory op=  apiCallRequestHistoryService.findFirstByOrderByTimestampDesc();
             if(op.getResponseBody()!=null){
             ObjectMapper mapper= new ObjectMapper();
-            Respuesta respuesta=mapper.readValue(op.getResponseBody(), Respuesta.class);
-            return respuesta.getRespuesta();
+            Resp resp =mapper.readValue(op.getResponseBody(), Resp.class);
+            return resp.getResp();
             }
         }
 
