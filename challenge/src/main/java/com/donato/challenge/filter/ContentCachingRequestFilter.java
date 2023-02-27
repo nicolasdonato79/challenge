@@ -46,9 +46,7 @@ public class ContentCachingRequestFilter extends OncePerRequestFilter {
 
         if (responseBody.length > 0) {
             responseWrapper.copyBodyToResponse();
-            System.out.println(("Request body: {}" + new String(requestBody, requestWrapper.getCharacterEncoding())));
-            System.out.println(("Response body: {}" + new String(responseBody, responseWrapper.getCharacterEncoding())));
-
+            System.out.println(responseWrapper.getStatus());
             ApiCallRequestHistory callHistory= new ApiCallRequestHistory();
             callHistory.setEndpoint(requestWrapper.getMethod());
             String method = requestWrapper.getMethod();
@@ -58,9 +56,6 @@ public class ContentCachingRequestFilter extends OncePerRequestFilter {
             ApiCallRequestHistory apiCallHistory = new ApiCallRequestHistory(method, endpoint, new String(requestBody, requestWrapper.getCharacterEncoding()), new String(responseBody, responseWrapper.getCharacterEncoding()), timestamp);
 
             apiCallRequestHistoryService.saveCall(apiCallHistory);
-
-
-
 
         }
 

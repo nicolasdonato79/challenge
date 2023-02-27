@@ -1,9 +1,11 @@
 package com.donato.challenge.service.interfaces;
 
+import com.donato.challenge.exception.ServerExternalException;
 import com.fasterxml.jackson.core.JsonProcessingException;
+
 
 public interface OperationService {
 
-    double add(Double x, Double y) throws JsonProcessingException;
+    double add(Double x, Double y) throws ServerExternalException, JsonProcessingException;
 
   }
