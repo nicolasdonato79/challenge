@@ -2,9 +2,11 @@ package com.donato.challenge.filter;
 
 import com.donato.challenge.entities.ApiCallRequestHistory;
 import com.donato.challenge.service.interfaces.ApiCallRequestHistoryService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
+
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.ContentCachingRequestWrapper;
 import org.springframework.web.util.ContentCachingResponseWrapper;
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.stream.Collectors;
@@ -24,6 +27,7 @@ import java.util.stream.Collectors;
 @Async
 public class ContentCachingRequestFilter extends OncePerRequestFilter {
 
+    private final Integer max=254;
 
     @Autowired
     private ApiCallRequestHistoryService apiCallRequestHistoryService;
@@ -53,10 +57,9 @@ public class ContentCachingRequestFilter extends OncePerRequestFilter {
             String endpoint = requestWrapper.getRequestURI();
             Date timestamp = new Date();
 
-            String request=new String(requestBody, requestWrapper.getCharacterEncoding());
-            request=request.length()>255?request.substring(0,254):request;
-            String response=new String(responseBody, responseWrapper.getCharacterEncoding()).substring(0,254);
-            response=response.length()>255?response.substring(0,254):response;
+            String request = getString(requestWrapper, requestBody);
+
+            String response= getString(responseWrapper,responseBody);
 
             ApiCallRequestHistory apiCallHistory = new ApiCallRequestHistory(method, endpoint, request, response , timestamp);
 
@@ -65,6 +68,19 @@ public class ContentCachingRequestFilter extends OncePerRequestFilter {
         }
 
 
+    }
+    private String getString(ContentCachingResponseWrapper responseWrapper, byte[] requestBody) throws UnsupportedEncodingException {
+        String request=new String(requestBody, responseWrapper.getCharacterEncoding());
+        return getString(request);
+    }
+    private String getString(ContentCachingRequestWrapper requestWrapper, byte[] requestBody) throws UnsupportedEncodingException {
+        String request=new String(requestBody, requestWrapper.getCharacterEncoding());
+        return getString(request);
+    }
+
+    private String getString(String valor) {
+        valor = StringUtils.isNotEmpty(valor) ? valor.length()>max? valor.substring(0,max) : valor :null;
+        return valor;
     }
 
 }

@@ -40,9 +40,6 @@ public class ApiCallRequestHistoryServiceImp implements ApiCallRequestHistorySer
         return apiCallRequestHistoryRepository.save(call);
     }
 
-
-
-
     public Page<ApiCallRequestHistory> search(String code, int pageNo, int pageSize,
                                 String sortField, String sortDirection) {
         SearchSpecifications<ApiCallRequestHistory> searchSpecifications = new SearchSpecifications<>();
@@ -54,6 +51,5 @@ public class ApiCallRequestHistoryServiceImp implements ApiCallRequestHistorySer
         return apiCallRequestHistoryRepository.findAll(searchSpecifications,
                 PageableUtils.buildPageable(pageNo, pageSize, sortField, sortDirection));
     }
-
 
 }

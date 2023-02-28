@@ -35,7 +35,7 @@ public class ApiRestCallHistoryController {
     }
 
     @PostMapping(value = "/buscar")
-    public String buscar(@RequestParam("code") String code, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
+    public Page<ApiCallRequestHistory> buscar(@RequestParam("code") String code, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
                          @RequestParam("sortField") String sortField, @RequestParam("sortDir") String sortDir) {
 
 
@@ -53,7 +53,7 @@ public class ApiRestCallHistoryController {
 
         }
 
-        return null;
+        return pagina;
     }
 
     private Page<ApiCallRequestHistory> buscarPagina(String code, int pageNo, int pageSize, String sortField, String sortDir) {
