@@ -1,7 +1,5 @@
 package com.donato.challenge.entities;
 
-import lombok.Data;
-
 public class OperationRequest {
 
     private double x;
