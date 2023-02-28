@@ -2,6 +2,7 @@ package com.donato.challenge.controller;
 
 import com.donato.challenge.entities.OperationRequest;
 import com.donato.challenge.entities.Resp;
+import com.donato.challenge.entities.RespWrapper;
 import com.donato.challenge.exception.ApiHistoryIOException;
 import com.donato.challenge.exception.ServerExternalException;
 import com.donato.challenge.service.interfaces.OperationService;
@@ -22,8 +23,8 @@ public class ApiRestController {
     @PostMapping
     @ExceptionHandler({ServerExternalException.class, JsonProcessingException.class, ApiHistoryIOException.class})
     public ResponseEntity<Resp> add(@RequestBody OperationRequest request) throws JsonProcessingException, ApiHistoryIOException {
-
-        return new ResponseEntity<>(new Resp(operationService.add(request.getX(), request.getY())), HttpStatus.OK);
+        RespWrapper respWrapper=operationService.add(request.getX(), request.getY());
+        return new ResponseEntity<>(respWrapper.getResp(), respWrapper.getStatus());
 
     }
 
