@@ -2,6 +2,7 @@ package com.donato.challenge.controller;
 
 import com.donato.challenge.entities.OperationRequest;
 import com.donato.challenge.entities.Resp;
+import com.donato.challenge.exception.ApiHistoryIOException;
 import com.donato.challenge.exception.ServerExternalException;
 import com.donato.challenge.service.interfaces.OperationService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -17,12 +18,10 @@ public class ApiRestController {
     @Autowired
     private OperationService operationService;
 
-//    Este metodo tiene que devolver 404 si falla,
-    //tmabien se puede usar el 503 para indicar el 503 Service Unavailable
-//    429 si se pasa de intentos dentro del plazo dado
+
     @PostMapping
-    @ExceptionHandler({ServerExternalException.class, JsonProcessingException.class})
-    public ResponseEntity<Resp> add(@RequestBody OperationRequest request) throws JsonProcessingException {
+    @ExceptionHandler({ServerExternalException.class, JsonProcessingException.class, ApiHistoryIOException.class})
+    public ResponseEntity<Resp> add(@RequestBody OperationRequest request) throws JsonProcessingException, ApiHistoryIOException {
 
         return new ResponseEntity<>(new Resp(operationService.add(request.getX(), request.getY())), HttpStatus.OK);
 

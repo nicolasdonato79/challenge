@@ -16,6 +16,7 @@ public class ApiCallRequestHistory {
     @GeneratedValue(generator = "apiCallRequestHistorySeq")
     private Long id;
 
+    private Integer status;
     private String method;
 
     private String endpoint;
@@ -26,7 +27,8 @@ public class ApiCallRequestHistory {
 
     private Date timestamp;
 
-    public ApiCallRequestHistory(String method, String endpoint, String requestBody, String responseBody, Date timestamp) {
+    public ApiCallRequestHistory(Integer status, String method, String endpoint, String requestBody, String responseBody, Date timestamp) {
+        this.status= status;
         this.method = method;
         this.endpoint = endpoint;
         this.requestBody = requestBody;
@@ -83,5 +85,13 @@ public class ApiCallRequestHistory {
 
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

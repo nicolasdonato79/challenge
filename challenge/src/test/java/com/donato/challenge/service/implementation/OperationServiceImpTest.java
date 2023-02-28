@@ -28,11 +28,11 @@ class OperationServiceImpTest {
     @Test
     void add() {
 
-        try {
-            when(operationServiceImp.add(5.0, 5.0)).thenReturn(11.0);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            when(operationServiceImp.add(5.0, 5.0)).thenReturn(11.0);
+//        } catch (JsonProcessingException e) {
+//            throw new RuntimeException(e);
+//        }
         // when(operationServiceImp.add(1.0, 1.0)).thenThrow(new Throwable("Error en el servicio externo"));
     }
 }

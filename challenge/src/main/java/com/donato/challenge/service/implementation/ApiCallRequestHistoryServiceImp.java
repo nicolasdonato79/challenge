@@ -52,4 +52,10 @@ public class ApiCallRequestHistoryServiceImp implements ApiCallRequestHistorySer
                 PageableUtils.buildPageable(pageNo, pageSize, sortField, sortDirection));
     }
 
+    @Override
+    public ApiCallRequestHistory findLastSuccessfulResponse() {
+        return apiCallRequestHistoryRepository.findLastValidResponse();
+    }
+
+
 }

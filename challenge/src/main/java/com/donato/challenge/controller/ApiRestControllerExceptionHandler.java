@@ -10,16 +10,15 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class ApiRestControllerExceptionHandler {
 
     @ExceptionHandler(ServerExternalException.class)
-    public ResponseEntity<String> manejarMiExcepcion(ServerExternalException ex) {
-        String mensaje = "Ocurrió una excepción: " + ex.getMessage();
-        return new ResponseEntity<>(mensaje, HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<String> handleException(ServerExternalException ex) {
+        String mensaje = "Ocurrió una excepción al llamar un servicio Externo: " + ex.getMessage();
+        return new ResponseEntity<>(mensaje, HttpStatus.SERVICE_UNAVAILABLE);
     }
 
     @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<String> manejarRuntimeException(RuntimeException ex) {
+    public ResponseEntity<String> handleRuntimeException(RuntimeException ex) {
         String mensaje = "Ocurrió un error interno en el servidor: " + ex.getMessage();
         return new ResponseEntity<>(mensaje, HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
 }
 
