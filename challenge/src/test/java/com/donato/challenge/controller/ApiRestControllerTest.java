@@ -39,8 +39,5 @@ class ApiRestControllerTest {
         RespWrapper resp2= operationService.add(x, y);
         assertEquals(resp.getResp(), resp2.getResp());
         assertEquals(resp.getStatus(), resp2.getStatus());
-
-
-
     }
 }

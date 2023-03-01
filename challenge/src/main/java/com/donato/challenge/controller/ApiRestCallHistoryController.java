@@ -29,10 +29,6 @@ public class ApiRestCallHistoryController {
     public List<ApiCallRequestHistory> getAll() {
         return apiCallRequestHistoryService.getAll();
     }
-    @GetMapping("/paginated")
-    public List<ApiCallRequestHistory> getPaginated() {
-        return apiCallRequestHistoryService.getAll();
-    }
 
     @PostMapping(value = "/buscar")
     public Page<ApiCallRequestHistory> buscar(@RequestParam("code") String code, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
