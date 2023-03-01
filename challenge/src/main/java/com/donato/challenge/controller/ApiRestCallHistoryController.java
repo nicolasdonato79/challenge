@@ -34,27 +34,11 @@ public class ApiRestCallHistoryController {
     public Page<ApiCallRequestHistory> buscar(@RequestParam("code") String code, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
                          @RequestParam("sortField") String sortField, @RequestParam("sortDir") String sortDir) {
 
-
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(10);
-        // Items fin
+        return apiCallRequestHistoryService.search(code, currentPage, pageSize, sortField, sortDir);
 
-        Page<ApiCallRequestHistory> pagina = null;
-
-        pagina = buscarPagina(code, currentPage, pageSize, sortField, sortDir);
-
-        int totalPages = pagina.getTotalPages();
-        if (totalPages > 0) {
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
-
-        }
-
-        return pagina;
     }
 
-    private Page<ApiCallRequestHistory> buscarPagina(String code, int pageNo, int pageSize, String sortField, String sortDir) {
 
-
-        return apiCallRequestHistoryService.search(code ,pageNo, pageSize, sortField, sortDir);
-    }
 }

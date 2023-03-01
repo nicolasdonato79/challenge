@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
+
 @Service
 public class ApiCallRequestHistoryServiceImp implements ApiCallRequestHistoryService {
     @Autowired
@@ -24,7 +26,8 @@ public class ApiCallRequestHistoryServiceImp implements ApiCallRequestHistorySer
         return apiCallRequestHistoryRepository.findAll();
     }
 
-    @Async
+    private final String ENDPOINT= "endpoint";
+
     public ApiCallRequestHistory saveCall(ApiCallRequestHistory call){
         return apiCallRequestHistoryRepository.save(call);
     }
@@ -34,7 +37,7 @@ public class ApiCallRequestHistoryServiceImp implements ApiCallRequestHistorySer
         SearchSpecifications<ApiCallRequestHistory> searchSpecifications = new SearchSpecifications<>();
 
         if (code!=null && !code.isEmpty()) {
-            searchSpecifications.add(new SearchCriteria("endpoint", code, SearchOperation.EQUAL));
+            searchSpecifications.add(new SearchCriteria(ENDPOINT, code, SearchOperation.EQUAL));
         }
 
         return apiCallRequestHistoryRepository.findAll(searchSpecifications,
