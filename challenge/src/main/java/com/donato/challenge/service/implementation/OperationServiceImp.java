@@ -32,7 +32,7 @@ public class OperationServiceImp implements OperationService {
         }catch (Exception e){
             ApiCallRequestHistory op=  apiCallRequestHistoryService.findLastSuccessfulResponse();
 
-            if(op.getResponseBody()!=null&& op.getStatus()==200 ){
+            if(op!=null && op.getResponseBody()!=null && op.getStatus()==200 ){
             ObjectMapper mapper= new ObjectMapper();
             Resp resp =mapper.readValue(op.getResponseBody(), Resp.class);
             return new RespWrapper(resp, HttpStatus.SERVICE_UNAVAILABLE);

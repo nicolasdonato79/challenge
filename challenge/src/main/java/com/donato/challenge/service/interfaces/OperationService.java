@@ -8,6 +8,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 public interface OperationService {
 
-   public RespWrapper add (Double x, Double y) throws ApiHistoryIOException, ServerExternalException, JsonProcessingException;
+   RespWrapper add (Double x, Double y) throws ApiHistoryIOException, ServerExternalException, JsonProcessingException;
 
   }

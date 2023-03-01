@@ -8,15 +8,13 @@ import java.util.List;
 
 public interface ApiCallRequestHistoryService {
 
-    public List<ApiCallRequestHistory> getAll();
+    List<ApiCallRequestHistory> getAll();
 
-    public ApiCallRequestHistory findFirstByOrderByTimestampDesc();
+    ApiCallRequestHistory saveCall(ApiCallRequestHistory apiCallRequestHistory);
 
-    public ApiCallRequestHistory saveCall(ApiCallRequestHistory apiCallRequestHistory);
-
-    public Page<ApiCallRequestHistory> search(String code, int pageNo, int pageSize,
+    Page<ApiCallRequestHistory> search(String code, int pageNo, int pageSize,
                                               String sortField, String sortDirection);
 
-    public ApiCallRequestHistory findLastSuccessfulResponse() throws ApiHistoryIOException;
+    ApiCallRequestHistory findLastSuccessfulResponse() throws ApiHistoryIOException;
 
 }

@@ -2,15 +2,11 @@ package com.donato.challenge.service.implementation;
 
 import com.donato.challenge.exception.ServerExternalException;
 import com.donato.challenge.service.interfaces.ExternalService;
-import org.springframework.cache.interceptor.CacheOperationInvoker;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class ExternalServiceImp implements ExternalService {
@@ -19,7 +15,7 @@ public class ExternalServiceImp implements ExternalService {
     private Long lastTime;
 
     // Uso 1 minutos para testear. Reemplazar el 1 por otro número cuando deseen testear otro valor.
-    private final Long LAP = new Long(1 * 60 * 1000);
+    private final Long LAP = Long.valueOf(1 * 60 * 1000);
     private Random random;
 
     ExternalServiceImp() {

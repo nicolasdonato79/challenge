@@ -21,8 +21,7 @@ public class ApiRestController {
 
 
     @PostMapping
-    @ExceptionHandler({ServerExternalException.class, JsonProcessingException.class, ApiHistoryIOException.class})
-    public ResponseEntity<Resp> add(@RequestBody OperationRequest request) throws JsonProcessingException, ApiHistoryIOException {
+    public ResponseEntity<Resp> add(@RequestBody OperationRequest request) throws ServerExternalException, JsonProcessingException, ApiHistoryIOException {
         RespWrapper respWrapper=operationService.add(request.getX(), request.getY());
         return new ResponseEntity<>(respWrapper.getResp(), respWrapper.getStatus());
 

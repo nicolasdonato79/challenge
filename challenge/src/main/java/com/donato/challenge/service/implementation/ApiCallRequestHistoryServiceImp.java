@@ -12,13 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 
 @Service
 public class ApiCallRequestHistoryServiceImp implements ApiCallRequestHistoryService {
@@ -28,11 +22,6 @@ public class ApiCallRequestHistoryServiceImp implements ApiCallRequestHistorySer
     @Override
     public List<ApiCallRequestHistory> getAll() {
         return apiCallRequestHistoryRepository.findAll();
-    }
-
-    @Override
-    public ApiCallRequestHistory findFirstByOrderByTimestampDesc() {
-       return apiCallRequestHistoryRepository.findFirstByOrderByTimestampDesc();
     }
 
     @Async
