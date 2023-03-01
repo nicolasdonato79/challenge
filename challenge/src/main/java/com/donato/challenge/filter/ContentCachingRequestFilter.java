@@ -24,7 +24,6 @@ import java.util.Date;
 import java.util.stream.Collectors;
 
 @Component
-@Async
 public class ContentCachingRequestFilter extends OncePerRequestFilter {
 
     private final Integer max=254;
@@ -32,6 +31,7 @@ public class ContentCachingRequestFilter extends OncePerRequestFilter {
     @Autowired
     private ApiCallRequestHistoryService apiCallRequestHistoryService;
 
+    @Async
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         ContentCachingRequestWrapper requestWrapper = new ContentCachingRequestWrapper(request);
