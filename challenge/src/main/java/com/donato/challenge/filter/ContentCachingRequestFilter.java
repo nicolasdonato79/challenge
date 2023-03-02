@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 @Component
 public class ContentCachingRequestFilter extends OncePerRequestFilter {
 
-    private final Integer max=254;
+    private final Integer max = 254;
 
     @Autowired
     private ApiCallRequestHistoryService apiCallRequestHistoryService;
@@ -38,14 +38,14 @@ public class ContentCachingRequestFilter extends OncePerRequestFilter {
         ContentCachingResponseWrapper responseWrapper = new ContentCachingResponseWrapper(response);
 
         filterChain.doFilter(requestWrapper, responseWrapper);
-        registryCall(requestWrapper,responseWrapper);
+        registryCall(requestWrapper, responseWrapper);
 
 
     }
 
     private void registryCall(ContentCachingRequestWrapper requestWrapper, ContentCachingResponseWrapper responseWrapper) throws IOException {
 
-        byte[] requestBody= requestWrapper.getContentAsByteArray();
+        byte[] requestBody = requestWrapper.getContentAsByteArray();
         byte[] responseBody = responseWrapper.getContentAsByteArray();
 
         if (responseBody.length > 0) {
@@ -56,9 +56,9 @@ public class ContentCachingRequestFilter extends OncePerRequestFilter {
             String endpoint = requestWrapper.getRequestURI();
             Date timestamp = new Date();
             String request = getString(requestWrapper, requestBody);
-            String response= getString(responseWrapper,responseBody);
+            String response = getString(responseWrapper, responseBody);
 
-            ApiCallRequestHistory apiCallHistory = new ApiCallRequestHistory(status, method, endpoint, request, response , timestamp);
+            ApiCallRequestHistory apiCallHistory = new ApiCallRequestHistory(status, method, endpoint, request, response, timestamp);
 
             apiCallRequestHistoryService.saveCall(apiCallHistory);
 
@@ -66,18 +66,20 @@ public class ContentCachingRequestFilter extends OncePerRequestFilter {
 
 
     }
+
     private String getString(ContentCachingResponseWrapper responseWrapper, byte[] requestBody) throws UnsupportedEncodingException {
-        String request=new String(requestBody, responseWrapper.getCharacterEncoding());
-        return getString(request);
-    }
-    private String getString(ContentCachingRequestWrapper requestWrapper, byte[] requestBody) throws UnsupportedEncodingException {
-        String request=new String(requestBody, requestWrapper.getCharacterEncoding());
+        String request = new String(requestBody, responseWrapper.getCharacterEncoding());
         return getString(request);
     }
 
-    private String getString(String valor) {
-        valor = StringUtils.isNotEmpty(valor) ? valor.length()>max? valor.substring(0,max) : valor :null;
-        return valor;
+    private String getString(ContentCachingRequestWrapper requestWrapper, byte[] requestBody) throws UnsupportedEncodingException {
+        String request = new String(requestBody, requestWrapper.getCharacterEncoding());
+        return getString(request);
+    }
+
+    private String getString(String value) {
+        value = StringUtils.isNotEmpty(value) ? value.length() > max ? value.substring(0, max) : value : null;
+        return value;
     }
 
 }

@@ -2,9 +2,9 @@ package com.donato.challenge.service.implementation;
 
 import com.donato.challenge.entities.ApiCallRequestHistory;
 import com.donato.challenge.repository.ApiCallRequestHistoryRepository;
-import com.donato.challenge.searchCriteria.SearchCriteria;
-import com.donato.challenge.searchCriteria.SearchOperation;
-import com.donato.challenge.searchCriteria.SearchSpecifications;
+import com.donato.challenge.criteria.SearchCriteria;
+import com.donato.challenge.criteria.SearchOperation;
+import com.donato.challenge.criteria.SearchSpecifications;
 import com.donato.challenge.service.interfaces.ApiCallRequestHistoryService;
 import com.donato.challenge.utils.PageableUtils;
 import org.springframework.beans.factory.annotation.Autowired;

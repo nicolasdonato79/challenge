@@ -1,19 +1,26 @@
 package com.donato.challenge.service.interfaces;
 
+import com.donato.challenge.criteria.SearchCriteria;
+import com.donato.challenge.criteria.SearchOperation;
+import com.donato.challenge.criteria.SearchSpecifications;
 import com.donato.challenge.entities.ApiCallRequestHistory;
+import com.donato.challenge.exception.ApiHistoryIOException;
 import com.donato.challenge.repository.ApiCallRequestHistoryRepository;
 import com.donato.challenge.service.implementation.ApiCallRequestHistoryServiceImp;
+import com.donato.challenge.utils.PageableUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.util.Assert;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
+import java.util.*;
+import java.util.function.Function;
 
 import static org.mockito.Mockito.when;
 
@@ -23,7 +30,7 @@ class ApiCallRequestHistoryServiceTest {
     ApiCallRequestHistoryRepository apiCallRequestHistoryRepository;
 
     @InjectMocks
-    ApiCallRequestHistoryServiceImp apiCallRequestHistoryService;
+    ApiCallRequestHistoryService apiCallRequestHistoryService = new ApiCallRequestHistoryServiceImp();
 
 
     @BeforeEach
@@ -31,7 +38,7 @@ class ApiCallRequestHistoryServiceTest {
         MockitoAnnotations.initMocks(this);
     }
 
-    ApiCallRequestHistory call = new ApiCallRequestHistory(200, "POST", "api-test", "body", "resp", new Date());
+    ApiCallRequestHistory call = new ApiCallRequestHistory(Long.getLong("1"),200, "POST", "api-test", "body", "resp", new Date(1l));
 
     @Test
     void saveCall() {
@@ -39,14 +46,8 @@ class ApiCallRequestHistoryServiceTest {
         when(apiCallRequestHistoryRepository.save(call)).thenReturn(call);
 
         ApiCallRequestHistory savedCall = apiCallRequestHistoryService.saveCall(call);
-        Assertions.assertEquals(call.getStatus(), savedCall.getStatus());
-        Assertions.assertEquals(call.getRequestBody(), savedCall.getRequestBody());
-        Assertions.assertEquals(call.getEndpoint(), savedCall.getEndpoint());
-        Assertions.assertEquals(call.getResponseBody(), savedCall.getResponseBody());
-        Assertions.assertEquals(call.getMethod(), savedCall.getMethod());
-        Assertions.assertNotNull(savedCall.getTimestamp());
-
-
+        Assertions.assertNotNull(savedCall);
+        Assertions.assertEquals(call,savedCall);
     }
 
     @Test
@@ -57,13 +58,11 @@ class ApiCallRequestHistoryServiceTest {
     }
 
     @Test
-    void findLastSuccessfulResponse() {
+    void findLastSuccessfulResponse() throws ApiHistoryIOException {
         when(apiCallRequestHistoryRepository.findLastValidResponse()).thenReturn(call);
         ApiCallRequestHistory resp=  apiCallRequestHistoryService.findLastSuccessfulResponse();
-        Assertions.assertEquals(call.getStatus(), resp.getStatus());
-        Assertions.assertEquals(call.getRequestBody(), resp.getRequestBody());
-        Assertions.assertEquals(call.getEndpoint(), resp.getEndpoint());
-        Assertions.assertEquals(call.getResponseBody(), resp.getResponseBody());
-        Assertions.assertEquals(call.getMethod(), resp.getMethod());
+        Assertions.assertNotNull(resp);
+        Assertions.assertEquals(call, resp);
     }
+
 }

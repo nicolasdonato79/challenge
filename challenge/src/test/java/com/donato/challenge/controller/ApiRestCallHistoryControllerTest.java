@@ -44,11 +44,7 @@ class ApiRestCallHistoryControllerTest {
         Assert.notEmpty(list);
     }
 
-    @Test
-    void getPaginated() {
-    }
-
-    @Test
+     @Test
     void buscar() {
     }
 }

@@ -19,13 +19,9 @@ import com.donato.challenge.repository.ApiCallRequestHistoryRepository;
 import org.springframework.web.util.ContentCachingResponseWrapper;
 
 
-
 @Component
 public class ApiCallHistoryInterceptor implements AsyncHandlerInterceptor {
     private final ApiCallRequestHistoryRepository apiCallRequestHistoryRepository;
-
-
-//    private final MyFilter myFilter = new MyFilter();
 
 
     public ApiCallHistoryInterceptor(ApiCallRequestHistoryRepository apiCallRequestHistoryRepository) {
@@ -35,40 +31,7 @@ public class ApiCallHistoryInterceptor implements AsyncHandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        // Invocamos al siguiente filtro o controlador
-//        Filter filterChain = new Filter() {
-//            @Override
-//            public void init(FilterConfig filterConfig) throws ServletException {
-//                Filter.super.init(filterConfig);
-//
-//            }
-//
-//            @Override
-//            public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-//                ContentCachingRequestWrapper requestWrapper = new ContentCachingRequestWrapper(request);
-//                ContentCachingResponseWrapper responseWrapper = new ContentCachingResponseWrapper(response);
-//
-//                chain.doFilter(requestWrapper, responseWrapper);
-//
-//                byte[] requestBody = requestWrapper.getContentAsByteArray();
-//                if (requestBody.length > 0) {
-//                    System.out.println(("Request body: {}" + new String(requestBody, requestWrapper.getCharacterEncoding())));
-//                }
-//                byte[] responseBody = responseWrapper.getContentAsByteArray();
-//                if (requestBody.length > 0) {
-//                    System.out.println(("Response body: {}" + new String(responseBody, responseWrapper.getCharacterEncoding())));
-//
-//                }
-//
-//            }
-//
-//            @Override
-//            public void destroy() {
-//                Filter.super.destroy();
-//            }
-//
-//        };
-//        filterChain.doFilter(requestWrapper, response);
+
         return true;
     }
 
