@@ -23,10 +23,5 @@ public class ApiRestControllerExceptionHandler {
         return new ResponseEntity<>(mensaje, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(ResponseStatusException.class)
-    public ResponseEntity<String>  handleNotFoundException(ResponseStatusException ex) {
-        return new ResponseEntity<>("No existe tal ese servicio", HttpStatus.NOT_FOUND);
-    }
-
 }
 
