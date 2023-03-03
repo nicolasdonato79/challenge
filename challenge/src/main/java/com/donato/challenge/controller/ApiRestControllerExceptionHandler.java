@@ -4,7 +4,9 @@ import com.donato.challenge.exception.ServerExternalException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestControllerAdvice
 public class ApiRestControllerExceptionHandler {
@@ -20,5 +22,11 @@ public class ApiRestControllerExceptionHandler {
         String mensaje = "Ocurrió un error interno en el servidor: " + ex.getMessage();
         return new ResponseEntity<>(mensaje, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @ExceptionHandler(ResponseStatusException.class)
+    public ResponseEntity<String>  handleNotFoundException(ResponseStatusException ex) {
+        return new ResponseEntity<>("No existe tal ese servicio", HttpStatus.NOT_FOUND);
+    }
+
 }
 
