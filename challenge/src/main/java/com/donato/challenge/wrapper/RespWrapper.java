@@ -1,5 +1,6 @@
-package com.donato.challenge.entities;
+package com.donato.challenge.wrapper;
 
+import com.donato.challenge.entities.Resp;
 import org.springframework.http.HttpStatus;
 
 import java.util.Objects;

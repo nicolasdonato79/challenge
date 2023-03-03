@@ -1,15 +1,14 @@
 package com.donato.challenge.service.implementation;
 
-import com.donato.challenge.entities.ApiCallRequestHistory;
-import com.donato.challenge.repository.ApiCallRequestHistoryRepository;
 import com.donato.challenge.criteria.SearchCriteria;
 import com.donato.challenge.criteria.SearchOperation;
 import com.donato.challenge.criteria.SearchSpecifications;
+import com.donato.challenge.entities.ApiCallRequestHistory;
+import com.donato.challenge.repository.ApiCallRequestHistoryRepository;
 import com.donato.challenge.service.interfaces.ApiCallRequestHistoryService;
 import com.donato.challenge.utils.PageableUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,11 +19,6 @@ import java.util.List;
 public class ApiCallRequestHistoryServiceImp implements ApiCallRequestHistoryService {
     @Autowired
     ApiCallRequestHistoryRepository apiCallRequestHistoryRepository;
-
-    @Override
-    public List<ApiCallRequestHistory> getAll() {
-        return apiCallRequestHistoryRepository.findAll();
-    }
 
     private final String ENDPOINT= "endpoint";
 

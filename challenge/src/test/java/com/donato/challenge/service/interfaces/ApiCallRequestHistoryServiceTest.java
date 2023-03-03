@@ -50,12 +50,12 @@ class ApiCallRequestHistoryServiceTest {
         Assertions.assertEquals(call,savedCall);
     }
 
-    @Test
-    void getAll() {
-        when(apiCallRequestHistoryRepository.findAll()).thenReturn(Collections.singletonList(call));
-        Assertions.assertNotNull(apiCallRequestHistoryRepository.findAll());
-        Assert.notEmpty(apiCallRequestHistoryRepository.findAll());
-    }
+//    @Test
+//    void getAll() {
+//        when(apiCallRequestHistoryRepository.findAll()).thenReturn(Collections.singletonList(call));
+//        Assertions.assertNotNull(apiCallRequestHistoryRepository.findAll());
+//        Assert.notEmpty(apiCallRequestHistoryRepository.findAll());
+//    }
 
     @Test
     void findLastSuccessfulResponse() throws ApiHistoryIOException {

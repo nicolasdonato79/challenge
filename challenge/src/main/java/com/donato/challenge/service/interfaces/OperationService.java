@@ -1,6 +1,6 @@
 package com.donato.challenge.service.interfaces;
 
-import com.donato.challenge.entities.RespWrapper;
+import com.donato.challenge.wrapper.RespWrapper;
 import com.donato.challenge.exception.ApiHistoryIOException;
 import com.donato.challenge.exception.ServerExternalException;
 import com.fasterxml.jackson.core.JsonProcessingException;

@@ -1,7 +1,6 @@
 package com.donato.challenge;
 
 import com.donato.challenge.controller.ApiRestControllerExceptionHandler;
-import com.donato.challenge.interceptor.ApiCallHistoryInterceptor;
 import com.donato.challenge.interceptor.LimitRequestInterceptor;
 import com.donato.challenge.repository.ApiCallRequestHistoryRepository;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +18,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new ApiCallHistoryInterceptor(apiCallRequestHistoryRepository));
         registry.addInterceptor(new LimitRequestInterceptor());
     }
     @Bean

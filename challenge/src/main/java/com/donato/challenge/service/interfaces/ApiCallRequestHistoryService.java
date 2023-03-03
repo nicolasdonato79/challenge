@@ -8,8 +8,6 @@ import java.util.List;
 
 public interface ApiCallRequestHistoryService {
 
-    List<ApiCallRequestHistory> getAll();
-
     ApiCallRequestHistory saveCall(ApiCallRequestHistory apiCallRequestHistory);
 
     Page<ApiCallRequestHistory> search(String code, int pageNo, int pageSize,

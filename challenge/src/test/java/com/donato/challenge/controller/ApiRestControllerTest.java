@@ -1,11 +1,8 @@
 package com.donato.challenge.controller;
 
 import com.donato.challenge.entities.Resp;
-import com.donato.challenge.entities.RespWrapper;
+import com.donato.challenge.wrapper.RespWrapper;
 import com.donato.challenge.exception.ApiHistoryIOException;
-import com.donato.challenge.repository.ApiCallRequestHistoryRepository;
-import com.donato.challenge.service.implementation.ApiCallRequestHistoryServiceImp;
-import com.donato.challenge.service.interfaces.ApiCallRequestHistoryService;
 import com.donato.challenge.service.interfaces.OperationService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.BeforeEach;

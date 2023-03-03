@@ -28,8 +28,6 @@ public class ExternalServiceImp implements ExternalService {
         if (x == 0 && y == 0) {
             throw new ServerExternalException("Error al llamar servicio externo");
         }
-
-
         return (x + y) * number;
     }
 

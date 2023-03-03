@@ -2,13 +2,9 @@ package com.donato.challenge.service.interfaces;
 
 import com.donato.challenge.entities.ApiCallRequestHistory;
 import com.donato.challenge.entities.Resp;
-import com.donato.challenge.entities.RespWrapper;
-import com.donato.challenge.service.implementation.ApiCallRequestHistoryServiceImp;
+import com.donato.challenge.wrapper.RespWrapper;
 import com.donato.challenge.service.implementation.ExternalServiceImp;
 import com.donato.challenge.service.implementation.OperationServiceImp;
-import com.donato.challenge.service.interfaces.ExternalService;
-import com.donato.challenge.service.interfaces.OperationService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +15,6 @@ import org.springframework.http.HttpStatus;
 
 import java.util.Date;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 class OperationServiceTest {

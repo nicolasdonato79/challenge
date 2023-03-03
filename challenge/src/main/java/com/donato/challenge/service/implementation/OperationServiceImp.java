@@ -2,7 +2,7 @@ package com.donato.challenge.service.implementation;
 
 import com.donato.challenge.entities.ApiCallRequestHistory;
 import com.donato.challenge.entities.Resp;
-import com.donato.challenge.entities.RespWrapper;
+import com.donato.challenge.wrapper.RespWrapper;
 import com.donato.challenge.exception.ApiHistoryIOException;
 import com.donato.challenge.exception.ServerExternalException;
 import com.donato.challenge.service.interfaces.ApiCallRequestHistoryService;
@@ -37,7 +37,7 @@ public class OperationServiceImp implements OperationService {
             Resp resp =mapper.readValue(op.getResponseBody(), Resp.class);
             return new RespWrapper(resp, HttpStatus.SERVICE_UNAVAILABLE);
             }else{
-                throw new ServerExternalException("Error al consumir el servicio externo");
+                throw new ServerExternalException("Error al consumir el servicio externo. No hay último registro para mostrar");
             }
         }
         return  new RespWrapper(new Resp(result) ,HttpStatus.OK) ;
